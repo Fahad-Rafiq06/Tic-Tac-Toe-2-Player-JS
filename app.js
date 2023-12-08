@@ -3,8 +3,8 @@ let resetbtn = document.querySelector("#reset");
 let msg = document.querySelector(".msg");
 let newGame = document.querySelector("#newGame")
 let msgContainer = document.querySelector(".msg-container");
-let user1 = prompt("Your Name Please");
-let user2 = prompt("2nd User Name");
+let user1 = prompt("1st Player Name");
+let user2 = prompt("2nd Player Name");
 let main = document.querySelector("main");
 let count = 0;
 
@@ -21,8 +21,6 @@ let winpos = [
     [2, 4, 6]
 ]
 
-
-
 boxes.forEach((box) => {
     box.addEventListener("click", () => {
         if (turnO) {
@@ -33,17 +31,14 @@ boxes.forEach((box) => {
             box.innerText = "O";
             turnO = true
         }
-        count++;
 
         box.disabled = true;
+        count++;
+        console.log(count)
         checkwinner();
     })
-
-
-
 })
 
-// console.log(count)
 const checkwinner = () => {
     for (let pattern of winpos) {
         // console.log(pattern)
@@ -57,10 +52,7 @@ const checkwinner = () => {
             }
 
         }
-        // console.log(draw)
     }
-
-    // console.log(draw)
 }
 
 const showWinner = (val) => {
@@ -68,7 +60,7 @@ const showWinner = (val) => {
         val = user1;
     }
     else {
-        val = user2;
+        val = user2
     }
     main.style.display = "none"
     msgContainer.classList.remove("hide");
@@ -80,9 +72,7 @@ const resetgame = () => {
     turnO = true;
     btnenabled();
     msgContainer.classList.add("hide");
-    main.style.display = "block"
-
-
+    main.style.display = "block";
 }
 
 const btndisabled = () => {
