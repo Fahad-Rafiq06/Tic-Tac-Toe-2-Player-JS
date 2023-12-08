@@ -26,15 +26,22 @@ boxes.forEach((box) => {
         if (turnO) {
             box.innerText = "X";
             turnO = false;
+
         }
         else {
             box.innerText = "O";
-            turnO = true
+            turnO = true;
+
         }
 
         box.disabled = true;
         count++;
-        console.log(count)
+        if (count === 9) {
+            count = 0;
+            draw();
+
+        }
+
         checkwinner();
     })
 })
@@ -55,6 +62,13 @@ const checkwinner = () => {
     }
 }
 
+const draw = () => {
+    msg.innerText = "We have a Draw";
+    main.style.display = "none";
+    msgContainer.classList.remove("hide")
+    btndisabled()
+}
+
 const showWinner = (val) => {
     if (val === "X") {
         val = user1;
@@ -73,6 +87,7 @@ const resetgame = () => {
     btnenabled();
     msgContainer.classList.add("hide");
     main.style.display = "block";
+    count = 0;
 }
 
 const btndisabled = () => {
