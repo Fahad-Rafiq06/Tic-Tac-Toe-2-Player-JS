@@ -2,7 +2,11 @@ let boxes = document.querySelectorAll(".btns");
 let resetbtn = document.querySelector("#reset");
 let msg = document.querySelector(".msg");
 let newGame = document.querySelector("#newGame")
-let msgContainer = document.querySelector(".msg-container")
+let msgContainer = document.querySelector(".msg-container");
+let user1 = prompt("Your Name Please");
+let user2 = prompt("2nd User Name");
+let main = document.querySelector("main");
+let count = 0;
 
 let turnO = true;
 
@@ -19,6 +23,27 @@ let winpos = [
 
 
 
+boxes.forEach((box) => {
+    box.addEventListener("click", () => {
+        if (turnO) {
+            box.innerText = "X";
+            turnO = false;
+        }
+        else {
+            box.innerText = "O";
+            turnO = true
+        }
+        count++;
+
+        box.disabled = true;
+        checkwinner();
+    })
+
+
+
+})
+
+// console.log(count)
 const checkwinner = () => {
     for (let pattern of winpos) {
         // console.log(pattern)
@@ -30,32 +55,33 @@ const checkwinner = () => {
             if (pos1 === pos2 && pos2 === pos3) {
                 showWinner(pos1);
             }
+
         }
+        // console.log(draw)
     }
+
+    // console.log(draw)
 }
 
-boxes.forEach((box) => {
-    box.addEventListener("click", () => {
-        if (turnO) {
-            box.innerText = "X";
-            turnO = false;
-        }
-        else {
-            box.innerText = "O";
-            turnO = true
-        }
-        box.disabled = true;
-
-        checkwinner();
-    })
-
-
-})
+const showWinner = (val) => {
+    if (val === "X") {
+        val = user1;
+    }
+    else {
+        val = user2;
+    }
+    main.style.display = "none"
+    msgContainer.classList.remove("hide");
+    msg.innerText = `Winner is ${val}`;
+    btndisabled()
+}
 
 const resetgame = () => {
     turnO = true;
     btnenabled();
-    msgContainer.classList.add("hide")
+    msgContainer.classList.add("hide");
+    main.style.display = "block"
+
 
 }
 
@@ -70,12 +96,6 @@ const btnenabled = () => {
         box.disabled = false;
         box.innerText = ""
     }
-}
-
-const showWinner = (val) => {
-    msgContainer.classList.remove("hide");
-    msg.innerText = `Winner is ${val}`;
-    btndisabled()
 }
 
 resetbtn.addEventListener("click", resetgame)
