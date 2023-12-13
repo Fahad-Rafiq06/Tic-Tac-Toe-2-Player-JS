@@ -7,6 +7,15 @@ let user1 = prompt("1st Player Name");
 let user2 = prompt("2nd Player Name");
 let main = document.querySelector("main");
 let count = 0;
+let x = 0;
+let o = 0;
+let xScore = document.querySelector("#xScore");
+let oScore = document.querySelector("#oScore");
+let xName = document.querySelector("#xName");
+let oName = document.querySelector("#oName");
+
+xName.innerText = `${user1} Score`;
+oName.innerText = `${user2} Score`;
 
 let turnO = true;
 
@@ -79,9 +88,17 @@ const draw = () => {
 const showWinner = (val) => {
     if (val === "X") {
         val = user1;
+        x++;
+        xScore.innerText = x;
+
     }
     else {
-        val = user2
+        val = user2;
+        o++;
+        oScore.innerText = o;
+        
+
+
     }
     main.style.display = "none"
     msgContainer.classList.remove("hide");
