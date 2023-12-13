@@ -71,6 +71,22 @@ body{
     font-size: 20px;
 }
 
+.scoreBoard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+}
+
+.score{
+    font-size: 30px;
+    margin-bottom: 3rem;
+}
+
+#oScore, #xScore{
+    font-size: 40px
+}
+
 /* main{
     display: none;
 } */
