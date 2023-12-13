@@ -10,6 +10,7 @@ let count = 0;
 
 let turnO = true;
 
+// Store all the winning possibilities.
 let winpos = [
     [0, 1, 2],
     [0, 4, 8],
@@ -21,6 +22,7 @@ let winpos = [
     [2, 4, 6]
 ]
 
+// checking each click and giving the value of O and X to each box
 boxes.forEach((box) => {
     box.addEventListener("click", () => {
         if (turnO) {
@@ -46,6 +48,8 @@ boxes.forEach((box) => {
     })
 })
 
+// checking the winner using the possibilites and clicks on boxes
+
 const checkwinner = () => {
     for (let pattern of winpos) {
         // console.log(pattern)
@@ -62,6 +66,8 @@ const checkwinner = () => {
     }
 }
 
+// This function will call if there will be no result.
+
 const draw = () => {
     msg.innerText = "We have a Draw";
     main.style.display = "none";
@@ -69,6 +75,7 @@ const draw = () => {
     btndisabled()
 }
 
+// this function will show the winner that we have calculated in the above function.
 const showWinner = (val) => {
     if (val === "X") {
         val = user1;
@@ -82,6 +89,8 @@ const showWinner = (val) => {
     btndisabled()
 }
 
+// this function will reset the game
+
 const resetgame = () => {
     turnO = true;
     btnenabled();
@@ -90,18 +99,23 @@ const resetgame = () => {
     count = 0;
 }
 
+// this function will discabled the clicked button
+
 const btndisabled = () => {
     for (let box of boxes) {
         box.disabled = true;
     }
 }
 
+// this function will enabled the button but it will be called only when the game is reset or it's a new game
 const btnenabled = () => {
     for (let box of boxes) {
         box.disabled = false;
         box.innerText = ""
     }
 }
+
+// calling the reset game function here with the buttons.
 
 resetbtn.addEventListener("click", resetgame)
 newGame.addEventListener("click", resetgame)
